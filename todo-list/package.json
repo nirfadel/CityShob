@@ -1,0 +1,25 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "todo app for create tasks",
+  "main": "app.js",
+  "author": "Nir Fadel",
+  "scripts": {
+    "start": "nodemon --inspect server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "debug": "ndb server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.0",
+    "socket.io": "^4.8.1",
+    "validator": "^13.12.0",
+    "xss-clean": "^0.1.4"
+  }
+}
