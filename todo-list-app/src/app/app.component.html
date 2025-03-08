@@ -1,0 +1,28 @@
+<div class="app-container">
+  <!-- <mat-toolbar color="primary" class="app-toolbar">
+    <span>Real-Time Collaborative To-Do List</span>
+    <span class="spacer"></span>
+    <span class="connection-status">
+      <mat-icon class="online-icon">wifi</mat-icon> Connected
+    </span>
+  </mat-toolbar> -->
+  <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+    <span>
+      <button mat-button routerLink="/">{{title}}</button>
+      <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+    </span>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+      <button mat-button routerLink="/login" *ngIf="!isAuthenticated">
+        <mat-icon>power_settings_new</mat-icon>
+        Login
+      </button>
+      <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        Logout
+      </button>
+    </div>
+  </mat-toolbar>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

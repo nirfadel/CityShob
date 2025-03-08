@@ -1,0 +1,55 @@
+  <div class="task-list-container">
+    <div class="task-list-header">
+      <h2>My Tasks</h2>
+      <button mat-raised-button color="primary" (click)="openTaskDialog()">
+        <mat-icon>add</mat-icon> Add Task
+      </button>
+    </div>
+  
+    <mat-card class="info-card" *ngIf="tasks.length === 0">
+      <mat-card-content>
+        <div class="empty-state">
+          <mat-icon class="empty-icon">assignment</mat-icon>
+          <h3>No tasks yet</h3>
+          <p>Create your first task by clicking the "Add Task" button above.</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  
+    <div class="task-list">
+      <mat-card *ngFor="let task of tasks" class="task-card" 
+                [class.completed]="task.completed" 
+                [class.locked]="isTaskBeingEditedByOthers(task)">
+        <mat-card-content>
+          <div class="task-content">
+            <mat-checkbox 
+              [checked]="task.completed" 
+              (change)="toggleTaskStatus(task)" 
+              [disabled]="isTaskBeingEditedByOthers(task)"
+              color="primary">
+            </mat-checkbox>
+            
+            <div class="task-details" [class.completed-text]="task.completed">
+              <h3>{{ task.title }}</h3>
+              <p *ngIf="task.description">{{ task.description }}</p>
+              
+              <div *ngIf="isTaskBeingEditedByOthers(task)" class="editing-indicator">
+                <mat-icon>edit</mat-icon>
+                <span>Someone is editing this task</span>
+              </div>
+            </div>
+  
+            <div class="task-actions">
+              <button 
+                mat-icon-button 
+                [disabled]="isTaskBeingEditedByOthers(task)"
+                (click)="openTaskDialog(task)"
+                matTooltip="Edit task">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
